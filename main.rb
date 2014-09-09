@@ -1,5 +1,5 @@
-require_relative 'lib/Digraph'
+require_relative 'lib/digraph'
 
-digraph = Digraph.new('AAIIJJKK')
+digraph = Digraph.new('CHARACTER')
 
 puts digraph.digraph_array.inspect

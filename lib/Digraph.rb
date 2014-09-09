@@ -1,4 +1,4 @@
-require_relative 'Keyword'
+require_relative 'keyword'
 
 class Digraph
 

@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../lib/Digraph'
+require_relative '../lib/digraph'
 
 describe Digraph do
   let(:valid_digraph) { Digraph.new('CHARLES') }

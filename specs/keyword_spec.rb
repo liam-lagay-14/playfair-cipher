@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../lib/Keyword'
+require_relative '../lib/keyword'
 
 describe Keyword do
   let(:valid_keyword) { Keyword.new('CHARLES') }
