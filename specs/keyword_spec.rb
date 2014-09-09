@@ -6,24 +6,30 @@ describe Keyword do
 
   let(:invalid_keyword) { Keyword.new('FAILURETEST123') }
 
-  let(:invalid_keyword_too_many_characters) { Keyword.new('FAILURETESTWITHTOOMANYKEYWORDS')}
-
   let(:blank_keyword) { Keyword.new('') }
+
+  let(:keyword_with_j_present) { Keyword.new('KEYWORDWITHJ')}
+
+  let(:keyword_with_multiple_occurrences_of_same_character) { Keyword.new('CHARACTER') }
 
   it 'takes a string and stores a value' do
      expect(valid_keyword.keyword).to eq('CHARLES')
+
+     expect(valid_keyword.is_valid_keyword?).to eq(true)
   end
 
-  it 'only allows an uppercase value' do
-    expect(valid_keyword.is_valid_keyword?).to eq(true)
+  it 'replaces any j characters with i' do
+    expect(keyword_with_j_present.keyword).to eq('KEYWORDITHI')
   end
 
-  it 'returns false for keywords containing anything except letters' do
-    expect(invalid_keyword.is_valid_keyword?).to eq(false)
+  it 'removes any repeating characters' do
+    expect(keyword_with_multiple_occurrences_of_same_character.keyword).to eq('CHARTE')
   end
 
-  it 'returns false for keywords that are longer than 25 characters' do
-    expect(invalid_keyword_too_many_characters.is_valid_keyword?).to eq(false)
+  context 'throws ArgumentError if the keyword is invalid' do
+    subject { invalid_keyword }
+
+    it { expect { subject}.to raise_error(ArgumentError) }
   end
 
   context 'raise an argument error if a blank keyword is entered' do
