@@ -3,10 +3,10 @@ class Keyword
   def initialize(keyword)
     @keyword = keyword
 
-    raise ArgumentError, 'Keyword must contain a value' unless keyword.length > 0
+    raise ArgumentError, 'Keyword must contain a value' if keyword.empty?
   end
 
   def is_valid_keyword?
-    (keyword =~ /^[A-Z]+$/) == 0
+    (keyword =~ /^[A-Z]{1,25}$/) == 0
   end
 end

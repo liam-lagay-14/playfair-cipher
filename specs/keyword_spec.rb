@@ -6,6 +6,8 @@ describe Keyword do
 
   let(:invalid_keyword) { Keyword.new('FAILURETEST123') }
 
+  let(:invalid_keyword_too_many_characters) { Keyword.new('FAILURETESTWITHTOOMANYKEYWORDS')}
+
   let(:blank_keyword) { Keyword.new('') }
 
   it 'takes a string and stores a value' do
@@ -18,6 +20,10 @@ describe Keyword do
 
   it 'returns false for keywords containing anything except letters' do
     expect(invalid_keyword.is_valid_keyword?).to eq(false)
+  end
+
+  it 'returns false for keywords that are longer than 25 characters' do
+    expect(invalid_keyword_too_many_characters.is_valid_keyword?).to eq(false)
   end
 
   context 'raise an argument error if a blank keyword is entered' do
