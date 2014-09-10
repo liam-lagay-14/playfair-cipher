@@ -14,8 +14,6 @@ describe Keyword do
 
   it 'takes a string and stores a value' do
      expect(valid_keyword.keyword).to eq('CHARLES')
-
-     expect(valid_keyword.is_valid_keyword?).to eq(true)
   end
 
   it 'replaces any j characters with i' do

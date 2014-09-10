@@ -15,6 +15,19 @@ class Digraph
     populate_digraph
   end
 
+  # Taken from http://stackoverflow.com/questions/1850756/how-do-i-find-index-of-a-multidimensional-array
+  def locate_character_in_digraph(character)
+    row = digraph_array.detect { |column| column.include?(character) }
+    {:row => digraph_array.index(row), :column => row.index(character)}
+  end
+
+  def get_character_in_given_row_and_column(row, column)
+    row = 0 if row == ARRAY_SIZE
+    column = 0 if column == ARRAY_SIZE
+
+    digraph_array[row][column]
+  end
+
   private
 
   def populate_digraph

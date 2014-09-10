@@ -23,6 +23,7 @@ class Message
     # append an X to the array if there are an odd number of characters
     append_x_character_to_array(list_of_characters, list_of_characters.size) if list_of_characters.size.odd?
 
+    # slice list of characters into pairs and return the array for use
     list_of_characters.each_slice(2).to_a
   end
 

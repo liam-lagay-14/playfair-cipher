@@ -12,6 +12,14 @@ describe Digraph do
     expect(valid_digraph.keyword.keyword).to eq('CHARLES')
   end
 
+  it 'should return the correct location in the digraph' do
+    expect(valid_digraph.locate_character_in_digraph('A')).to eq({ :row => 0, :column => 2 })
+  end
+
+  it 'should return the correct character with a given row and column' do
+    expect(valid_digraph.get_character_in_given_row_and_column(0, 2)).to eq('A')
+  end
+
   it 'should add the keyword to the digraph' do
     expect(valid_digraph.digraph_array[0]).to eq(%w(C H A R L))
   end

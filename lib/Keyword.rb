@@ -7,11 +7,11 @@ class Keyword
     raise ArgumentError, 'Keyword must contain a value' if keyword.empty?
   end
 
+  private
+
   def is_valid_keyword?
     (keyword =~ /^[A-Z]+$/) == 0
   end
-
-  private
 
   def remove_duplicates_and_sub_character_if_needed(keyword_to_process)
     unique_keyword = ''
