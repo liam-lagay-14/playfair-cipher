@@ -6,8 +6,6 @@ describe EncryptionCipher do
 
   let(:encryption_cipher) { EncryptionCipher.new('meet me at hammersmith bridge tonight', 'CHARLES') }
 
-  let(:second_encryption_cipher) { EncryptionCipher.new('Test Message', 'LIAMTEST') }
-
   let(:cipher_with_invalid_keyword) { EncryptionCipher.new('Test Message', '')}
 
   it 'should return a message and digraph' do
@@ -17,16 +15,17 @@ describe EncryptionCipher do
   end
 
   it 'should take digraph array and message pairs' do
-    expect(encryption_cipher.encrypted_pairs).to eq([%w(G D), %w(V B), %w(Y T), %w(B C), %w(P R),
-                                                     %w(R K), %w(Y K), %w(D C), %w(D I), %w(M P),
-                                                     %w(A S), %w(H M), %w(E M), %w(D O), %w(U G),
-                                                     %w(K I), %w(R P)])
+    encrypted_message = encryption_cipher.encrypt_message
+
+    expect(encrypted_message).to eq('GDVBYTBCPRRKYKDCDIMPASHMEMDOUGKIRP')
   end
 
-  context 'test a second test message and keyword' do
-    subject { second_encryption_cipher }
+  it 'should return the original message pairs when decrypting the message' do
+    encryption_message = encryption_cipher.encrypt_message
 
-    it { expect(subject.encrypted_pairs).to eq([%w(L D), %w(D I), %w(L C), %w(B W), %w(B I), %w(F S)])}
+    decrypted_message = encryption_cipher.decrypt_message(encryption_message)
+
+    expect(decrypted_message).to eq('MEXETMEATHAMXMERSMITHBRIDGETONIGHT')
   end
 
   context 'error should be thrown if an invalid keyword is entered' do
