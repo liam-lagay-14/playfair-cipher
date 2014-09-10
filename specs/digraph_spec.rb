@@ -29,7 +29,7 @@ describe Digraph do
   end
 
   it 'should return the correct digraph with letter j present' do
-    expect(valid_digraph_with_letter_j_present.digraph_array).to eq([%w(L I A M I), %w(T E S B C), %w(D F G H K), %w(N O P Q R), %w(U V W X Y)])
+    expect(valid_digraph_with_letter_j_present.digraph_array).to eq([%w(L I A M T), %w(E S B C D), %w(F G H K N), %w(O P Q R U), %w(V W X Y Z)])
   end
 
   it 'should flatten repeated characters down' do

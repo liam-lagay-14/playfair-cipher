@@ -1,5 +1,4 @@
 require_relative 'lib/encryption_cipher'
-require_relative 'lib/message'
 require_relative 'lib/digraph'
 
 puts 'PLAYFAIR CIPHER EXERCISE by Liam Lagay'
@@ -10,7 +9,7 @@ raise ArgumentError, 'Please provide a message and keyword' if (ARGV[0].nil? || 
 
 encryption_cipher = EncryptionCipher.new(ARGV[0], ARGV[1])
 
-puts encryption_cipher.message_to_encrypt.message
+puts encryption_cipher.message
 puts encryption_cipher.digraph.keyword.keyword
 
 puts '>>>>>>>>>>>>>>'

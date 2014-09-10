@@ -8,16 +8,10 @@ describe Keyword do
 
   let(:blank_keyword) { Keyword.new('') }
 
-  let(:keyword_with_j_present) { Keyword.new('KEYWORDWITHJ')}
-
   let(:keyword_with_multiple_occurrences_of_same_character) { Keyword.new('CHARACTER') }
 
   it 'takes a string and stores a value' do
      expect(valid_keyword.keyword).to eq('CHARLES')
-  end
-
-  it 'replaces any j characters with i' do
-    expect(keyword_with_j_present.keyword).to eq('KEYWORDITHI')
   end
 
   it 'removes any repeating characters' do

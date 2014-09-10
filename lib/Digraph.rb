@@ -42,10 +42,14 @@ class Digraph
     alphabet_array = ('A'..'Z').to_a
     alphabet_array.delete('J')
     alphabet_array.each do |character|
-      unless keyword.keyword.include? character
-        row_array << character
-        add_to_digraph_array_if_row_full
-      end
+      add_to_row_array(character)
+    end
+  end
+
+  def add_to_row_array(character)
+    unless keyword.keyword.include? character
+      row_array << character
+      add_to_digraph_array_if_row_full
     end
   end
 

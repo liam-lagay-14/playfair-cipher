@@ -1,9 +1,11 @@
 class EncryptionCipher
   attr_accessor :message_pairs
-  attr_reader :message_to_encrypt, :digraph
+  attr_reader :message, :digraph
 
   def initialize(message, keyword)
-    @message_to_encrypt = Message.new(message)
+    raise ArgumentError, 'Please provide a message and keyword' if message.empty? || keyword.empty?
+
+    @message = message
     @digraph = Digraph.new(keyword)
     @message_pairs = []
   end
@@ -11,7 +13,7 @@ class EncryptionCipher
   def encrypt_message
     encrypted_message_pairs = []
 
-    message_pairs = split_message_into_pairs(message_to_encrypt.message, true)
+    message_pairs = split_message_into_pairs(message, true)
 
     message_pairs.each do |message_pair|
       character_one = digraph.locate_character_in_digraph(message_pair[0])
@@ -61,6 +63,7 @@ class EncryptionCipher
     list_of_characters = message.upcase.gsub(/\s+/, '').split('')
 
     list_of_characters.each_with_index do |character, index|
+      list_of_characters[index] = 'I' if list_of_characters[index] == 'J'
       next_character = list_of_characters[index + 1]
       # append an X to the array if a character matches AND WE ARE ENCRYPTING!!!
       append_x_character_to_array(list_of_characters, index + 1) if (next_character == character && is_encryption)
