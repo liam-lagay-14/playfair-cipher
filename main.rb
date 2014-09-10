@@ -6,7 +6,9 @@ puts 'PLAYFAIR CIPHER EXERCISE by Liam Lagay'
 
 puts '>>>>>>>>>>>>>>'
 
-encryption_cipher = EncryptionCipher.new('Meet me at the Hammersmith Bridge tonight', 'CHARLES')
+raise ArgumentError, 'Please provide a message and keyword' if (ARGV[0].nil? || ARGV[1].nil?)
+
+encryption_cipher = EncryptionCipher.new(ARGV[0], ARGV[1])
 
 puts encryption_cipher.message_to_encrypt.message
 puts encryption_cipher.digraph.keyword.keyword

@@ -38,21 +38,12 @@ class EncryptionCipher
   end
 
   def get_characters(character_one, character_two, is_encryption)
-    # Step 1 - is the message pair in the same row? If so, get the character from the next column along (shifted to the
-    # start if we reach the end of the array)
 
-    # Step 2 - is the message pair in the same column? If so, get the character from the next row down (shifted to the top
-    # if we reach the end of the array)
-
-    # Step 3 - For first letter, go along the row and get the character that intersects the column containing the
-    # second letter. For second character, go along the column and get the character that intersects the row
-    # containing the first letter
-
-    # TODO - Still not entirely convinced by this approach - review needed.
-
+    # If on same row and we are encrypting - move one to the right of the grid. Otherwise, move one to the left.
     if exist_on_same_row?(character_one, character_two)
       transformed_character_one = digraph.get_character_in_given_row_and_column(character_one[:row], (is_encryption ? character_one[:column] + 1 : character_one[:column] - 1))
       transformed_character_two = digraph.get_character_in_given_row_and_column(character_two[:row], (is_encryption ? character_two[:column] + 1 : character_two[:column] -1))
+    # If on the same column and we are encrypting, move one down in the grid. Otherwise, move one up!
     elsif exist_on_same_column?(character_one, character_two)
       transformed_character_one = digraph.get_character_in_given_row_and_column((is_encryption ? character_one[:row] + 1 : character_one[:row] -1), character_one[:column])
       transformed_character_two = digraph.get_character_in_given_row_and_column((is_encryption ? character_two[:row] + 1 : character_two[:row] -1), character_two[:column])
@@ -71,7 +62,7 @@ class EncryptionCipher
 
     list_of_characters.each_with_index do |character, index|
       next_character = list_of_characters[index + 1]
-      # append an X to the array if a character matches
+      # append an X to the array if a character matches AND WE ARE ENCRYPTING!!!
       append_x_character_to_array(list_of_characters, index + 1) if (next_character == character && is_encryption)
     end
 
